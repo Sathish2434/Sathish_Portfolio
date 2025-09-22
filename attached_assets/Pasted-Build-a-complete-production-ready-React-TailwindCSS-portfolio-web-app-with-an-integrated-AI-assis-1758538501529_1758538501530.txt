@@ -1,0 +1,113 @@
+Build a complete, production-ready React + TailwindCSS portfolio web app with an integrated AI assistant (OpenAI) and polished, dynamic UI/UX. Output should be a single, copy-paste runnable project scaffold (React app) plus a small serverless function example to safely proxy OpenAI requests. Use modern best-practices, accessible HTML, and production-minded defaults. Include comments and clear placeholders for secrets. Make the generated code ready for deployment (Vercel/Netlify) with EmailJS contact fallback. Use framer-motion and tasteful Tailwind utilities for all animations and transitions.
+
+Requirements & Implementation Details:
+
+1) Tech stack & dependencies
+- React (create-react-app or Vite — choose Vite for speed).
+- TailwindCSS (mobile-first, content configured).
+- framer-motion for animations.
+- react-router-dom for route structure (Home, About, Services, Portfolio, Contact, AI Assistant page/modal).
+- emailjs-com for contact form.
+- axios or fetch for API calls.
+- Optional: clsx for conditional classes (optional).
+- Serverless function (Node/Express/Serverless handler) to proxy OpenAI requests — include an example Vercel / Netlify function and sample code for streaming responses (or chunked responses) with fallback to regular JSON if streaming not available.
+- Use OpenAI "chat completions" via POST to proxy; show how to send conversation history and handle tokens. Provide placeholder: OPENAI_API_KEY.
+
+2) Project structure (deliver exactly in output)
+- src/
+  - main.jsx / index.jsx
+  - App.jsx
+  - pages/Home.jsx
+  - pages/About.jsx
+  - pages/Services.jsx
+  - pages/Portfolio.jsx
+  - pages/Contact.jsx
+  - pages/AI.jsx  (full-screen assistant page + floating chat widget)
+  - components/
+    - Navbar.jsx
+    - Footer.jsx
+    - Hero.jsx
+    - SectionCard.jsx
+    - ProjectCard.jsx
+    - ContactForm.jsx
+    - AIWidget.jsx (chat widget used across site)
+    - ThemeToggle.jsx
+  - lib/
+    - api.js (client API helper for contacting serverless proxy)
+    - email.js (EmailJS helper)
+  - styles/index.css (Tailwind imports)
+- server/
+  - functions/openai-proxy.js (Vercel/Netlify serverless example) — secure proxy that accepts messages, forwards to OpenAI, streams responses to client. Include CORS-safe headers and rate-limit comments.
+- tailwind.config.js
+- vite.config.js or package.json scripts included.
+
+3) UI & Interactions (detailed)
+- Clean, modern, responsive design with indigo/purple accent.
+- Theme toggle (light/dark) saved to localStorage; CSS variables where needed.
+- Navbar: sticky, shadow on scroll, link active state, smooth scroll when on single-page sections and route navigation when on separate pages.
+- Hero: fullscreen gradient, animated headline with framer-motion text reveal, CTA to Contact/AI.
+- Section cards: subtle hover lift, rounded-2xl, shadow, micro-interactions (scale, shadow).
+- Portfolio grid: masonry-like layout on larger screens; each card reveals technologies on hover using framer-motion.
+- Contact form: EmailJS integration, client-side validation, success & error toast notifications (simple accessible alerts).
+- AI Assistant:
+  - Provide both a full-page AI experience (AI page) and a minimized floating chat widget (AIWidget) visible on all pages.
+  - Chat UI supports: streaming assistant responses (live token append), user message input, conversation history saved to localStorage, user can clear history.
+  - Show typing indicator and animated message bubbles (enter/exit animations).
+  - Allow user to choose response style (concise, technical, friendly) via dropdown.
+  - Allow attachments: user can paste an image URL or brief code snippet (show code block rendering).
+  - Provide "Regenerate" button for last assistant reply and "Save to Portfolio Note" (local save).
+  - Provide a "Run code snippet" button that opens a sandboxed code viewer (display only; no execution) with syntax highlighting (use simple pre > code styling).
+
+4) OpenAI Integration details (serverless)
+- Provide serverless function code that:
+  - Accepts POST with { messages: [...], model?: 'gpt-4o-mini' | 'gpt-4o', temperature?, stream?: true/false }.
+  - Uses process.env.OPENAI_API_KEY and rejects if missing.
+  - For streaming: proxy the OpenAI streaming response to the client with proper text/event-stream or chunked response. Include client-side code to handle streaming chunks (readable stream / fetch + reader).
+  - Include fallback for non-streaming (returns final JSON).
+  - Securely limit request size and sanitize inputs.
+  - Example Vercel function filename and Netlify function variant comments.
+
+5) Client-side OpenAI usage
+- In lib/api.js provide:
+  - `sendChat(messages, opts)` which POSTs to `/api/openai-proxy` and handles streaming with an async iterator or fetch reader; expose progress callback to append tokens real-time.
+  - Show usage example in pages/AI.jsx and components/AIWidget.jsx to demonstrate streaming UI: append tokens as they arrive, animate assistant bubble using framer-motion.
+- Store chat sessions in localStorage with timestamp and allow switching sessions.
+
+6) Accessibility & Performance
+- Semantic HTML, ARIA attributes for forms and chat (role="log", aria-live for new messages).
+- Lazy-load images and portfolio assets.
+- Use prefetch or route-based code splitting (React lazy + Suspense) for heavy pages (AI page).
+- Keep bundle size moderate; mention where to optimize (remove dev libs in prod).
+
+7) Animations & Transitions (very specific)
+- Use framer-motion for:
+  - Hero headline (staggered children reveal).
+  - Nav link underline slide on hover.
+  - Card hover lift and content fade-ins.
+  - Chat bubbles enter with a springy pop and exit with fade.
+  - Theme transition using CSS variables animated with framer-motion wrapper where needed.
+- Use Tailwind transitions for quick micro-transitions (duration-200 ease-in-out, transform).
+
+8) Developer experience & comments
+- Use environment variables for secrets; show `.env.example` with `VITE_OPENAI_PROXY_URL` or `OPENAI_API_KEY` comment lines.
+- Provide brief deployment notes: Vercel/Netlify instructions to set environment variable OPENAI_API_KEY; enable serverless function; set build commands.
+- Provide guidance on cost controls: limit tokens, max length, and per-request checks.
+
+9) Security & Safety
+- Never expose OpenAI key on the client — always use serverless proxy.
+- Sanitize user input and limit request size.
+- Add a comment showing how to rotate keys and use serverless secret storage.
+- Warn about costs and to restrict usage if public.
+
+10) Output formatting
+- Provide complete, ready-to-run source files in the response. Use clear placeholders such as `/* TODO: REPLACE WITH YOUR OPENAI_KEY */` only in server files. Provide `package.json` scripts for dev and build.
+- Keep code well-commented and minimal external packages.
+- Ensure all import paths match and Tailwind classes are used (no raw CSS except minimal variables and utility classes).
+- At the top of the generated project include a short README content describing setup steps:
+  - Install dependencies
+  - Configure environment variables (OPENAI_API_KEY and EmailJS values)
+  - Run dev server
+  - Deploy notes for Vercel/Netlify
+
+Summary: produce a single, full project scaffold with explicit files and contents implementing everything above (React + Tailwind + framer-motion + EmailJS + serverless OpenAI proxy + streaming-capable chat widget + dynamic polished UI & animations). Make code copy-paste runnable and ready for deployment.
+
