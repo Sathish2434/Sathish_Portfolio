@@ -1,0 +1,27 @@
+﻿services:
+  - type: web
+    name: darkblue-portfolio
+    env: node
+    runtime: node
+    region: oregon
+    plan: free
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /api/health
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: VITE_EMAILJS_SERVICE_ID
+        sync: false
+      - key: VITE_EMAILJS_TEMPLATE_ID
+        sync: false
+      - key: VITE_EMAILJS_PUBLIC_KEY
+        sync: false
+      - key: VITE_OPENAI_PROXY_URL
+        value: https://$RENDER_EXTERNAL_URL/api/openai-proxy
