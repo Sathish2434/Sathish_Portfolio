@@ -1,4 +1,4 @@
-# Alex Morgan - AI-Powered Portfolio
+# Sathish Sundaramoorthy - AI-Powered Portfolio
 
 A complete, production-ready React + TailwindCSS portfolio website with integrated AI assistant capabilities. Features modern design, responsive layout, and seamless AI integration powered by OpenAI's latest GPT-5 model.
 
