@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AIWidget } from "@/components/AIWidget";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
@@ -39,7 +38,7 @@ function App() {
             <main>
               <Router />
             </main>
-            <Footer />
+            {/* <Footer /> */}
             <AIWidget />
             <Toaster />
           </div>

@@ -4,14 +4,14 @@ import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   const skills = [
-    "React.js", "Node.js", "TypeScript", "Python", "OpenAI",
-    "TailwindCSS", "PostgreSQL", "AWS", "Docker"
+    "React.js", "Node.js", "JavaScript", "Java", "Spring Boot",
+    "TailWindCSS", "MySql", "RestAPI", "Next.js"
   ];
 
   const stats = [
-    { value: "50+", label: "Projects" },
-    { value: "6+", label: "Years Experience" },
-    { value: "25+", label: "Happy Clients" },
+    { value: "10+", label: "Projects" },
+    { value: "3+", label: "Internships" },
+    { value: "10+", label: "Certifications" },
   ];
 
   return (
@@ -42,9 +42,9 @@ export default function About() {
           >
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800"
-                alt="Alex Morgan - Professional headshot"
-                className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
+                src="/sathish.jpg"
+                alt="Sathish - Professional headshot"
+                className="rounded-2xl shadow-2xl w-full max-w-md mx-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-2xl"></div>
             </div>
@@ -58,15 +58,15 @@ export default function About() {
             className="space-y-6"
           >
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Hello, I'm Alex!</h2>
+              <h2 className="text-2xl font-semibold mb-4">Hello, I'm Sathish!</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                With over 6 years of experience in full-stack development, I specialize in creating
-                modern web applications that seamlessly integrate AI capabilities. My passion lies in
-                bridging the gap between complex technology and intuitive user experiences.
+                With a strong foundation in full-stack development, I focus on building modern web
+                applications with seamless AI integration. I’m passionate about making complex
+                technologies simple and user-friendly.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring the latest AI research, contributing to
-                open-source projects, or mentoring aspiring developers in the community.
+                Beyond coding, I enjoy learning the latest in AI, contributing to projects, and
+                supporting fellow developers in their growth.
               </p>
             </div>
 

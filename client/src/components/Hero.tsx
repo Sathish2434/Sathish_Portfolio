@@ -83,14 +83,14 @@ export default function Hero() {
           className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6"
           variants={nameVariants}
         >
-          <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            Alex Morgan
+          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent whitespace-nowrap">
+            Sathish Sundaramoorthy
           </span>
           <motion.span
             className="block text-2xl sm:text-3xl lg:text-4xl font-light text-muted-foreground mt-4"
             variants={itemVariants}
           >
-            Full Stack Developer & AI Specialist
+            Full Stack Developer & Java Developer
           </motion.span>
         </motion.h1>
 
@@ -127,21 +127,6 @@ export default function Hero() {
               <Bot className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
             </Button>
           </Link>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <div className="text-2xl text-muted-foreground">↓</div>
         </motion.div>
       </motion.div>
     </section>

@@ -53,7 +53,7 @@ export default function Navbar() {
               className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer"
               data-testid="navbar-logo"
             >
-              Alex Morgan
+              SATHISH
             </motion.div>
           </Link>
 

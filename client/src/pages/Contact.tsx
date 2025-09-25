@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Dribbble } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
@@ -7,28 +7,28 @@ export default function Contact() {
     {
       icon: Mail,
       label: "Email",
-      value: "alex@example.com",
-      href: "mailto:alex@example.com"
+      value: "sathishsundharamoorthym@gmail.com",
+      href: "mailto:sathishsundharamoorthym@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (234) 567-8900",
-      href: "tel:+1234567890"
+      value: "+91 6379387377",
+      href: "tel:+916379387377"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "SH 49, Mahabalipuram, Tamil Nadu 603104",
       href: null
     }
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Dribbble, href: "https://dribbble.com", label: "Dribbble" }
+    { icon: Github, href: "https://github.com/Sathish2434", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/sathish-sundharamoorthy-959946294/", label: "LinkedIn" },
+    { icon: Twitter, href: "https://x.com/SATHISH00731", label: "Twitter" },
+    { icon: Instagram, href: "https://www.instagram.com/god__of_pain/?hl=en", label: "Instagram" }
   ];
 
   return (

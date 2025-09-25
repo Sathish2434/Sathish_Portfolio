@@ -58,7 +58,7 @@ export default function ContactForm() {
     
     try {
       await sendEmail({
-        to_name: "Alex Morgan",
+        to_name: "Sathish",
         from_name: `${data.firstName} ${data.lastName}`,
         from_email: data.email,
         company: data.company || "Not specified",
