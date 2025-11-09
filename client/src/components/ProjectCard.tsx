@@ -29,7 +29,7 @@ export default function ProjectCard({
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true }}
       transition={{
         duration: 0.6,
         delay,
@@ -39,9 +39,9 @@ export default function ProjectCard({
         y: -8,
         transition: { duration: 0.3 },
       }}
-      className="group"
+      className="group h-full"
     >
-      <Card className="rounded-2xl overflow-hidden border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl bg-background">
+      <Card className="rounded-2xl overflow-hidden border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl bg-background h-full flex flex-col">
         <div className="relative">
           <img
             src={image}
@@ -51,7 +51,7 @@ export default function ProjectCard({
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
         
-        <CardContent className="p-6">
+        <CardContent className="p-6 flex flex-col flex-1">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-xl font-semibold">{title}</h3>
             <div className="flex space-x-2">
@@ -107,7 +107,7 @@ export default function ProjectCard({
               ))}
             </div>
             
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground mt-auto">
               <strong>Key Features:</strong> {features.join(", ")}
             </div>
           </motion.div>

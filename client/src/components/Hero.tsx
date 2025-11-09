@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Bot } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/ThemeProvider";
+import AnimatedDotBackground from "@/components/AnimatedDotBackground";
 
 export default function Hero() {
+  const { theme } = useTheme();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -43,9 +46,12 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+      {/* Animated Dot Background */}
+      <AnimatedDotBackground />
+      
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-secondary/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5" />
       
       {/* Animated background shapes */}
       <motion.div
@@ -80,14 +86,20 @@ export default function Hero() {
         animate="visible"
       >
         <motion.h1
-          className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6"
+          className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight"
           variants={nameVariants}
         >
-          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent whitespace-nowrap">
+          <span
+            className={
+              theme === "light"
+                ? "text-foreground sm:whitespace-nowrap"
+                : "bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent sm:whitespace-nowrap"
+            }
+          >
             Sathish Sundaramoorthy
           </span>
           <motion.span
-            className="block text-2xl sm:text-3xl lg:text-4xl font-light text-muted-foreground mt-4"
+            className="block text-xl sm:text-2xl lg:text-4xl font-light text-muted-foreground mt-4"
             variants={itemVariants}
           >
             Full Stack Developer & Java Developer
@@ -109,7 +121,11 @@ export default function Hero() {
           <Link href="/portfolio">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 group"
+              className={
+                theme === "light"
+                  ? "bg-accent text-primary-foreground hover:bg-accent/90 transition-all duration-300 group"
+                  : "bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 group"
+              }
               data-testid="hero-view-work"
             >
               View My Work

@@ -36,7 +36,7 @@ export default function Services() {
     },
     {
       icon: Cloud,
-      title: "Cloud & DevOps",
+      title: "Java Development",
       description: "Scalable infrastructure and deployment pipelines. From local development to production, ensuring your applications run smoothly and securely.",
       features: [
         "AWS & Docker Deployment",
@@ -77,7 +77,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
-            Services
+            What I Do
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Comprehensive solutions for your digital transformation needs
