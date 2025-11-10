@@ -30,7 +30,7 @@ export default function Portfolio() {
     {
       title: "AI-Powered Collaborative Knowledge Hub",
       description: "AI-Powered Collaborative Knowledge Hub with AI-powered priority suggestions, automated scheduling, and natural language task creation.",
-      image: "/public/AI.png",
+      image: "/AI.png",
       technologies: ["React.js", "TailwindCSS", "JavaScript", "GEMINI", "Supabase"],
       features: ["Real-time updates", "Data Visualization", "Form Management"],
       liveUrl: "https://example.com",
@@ -39,7 +39,7 @@ export default function Portfolio() {
     {
       title: "Music Player",
       description: "A modern music player with a sleek design, smooth animations, and a focus on user experience. Inspired by the music player theme for a seamless, enjoyable listening experience.",
-      image: "/public/music.png",
+      image: "/music.png",
       technologies: ["React vite", "TailwindCSS", "JavaScript", "iTune API"],
       features: [" Play / Pause / Seek audio tracks", " Album artwork display", "Responsive UI "],
       liveUrl: "https://music-player-three-omega-72.vercel.app/",
@@ -48,7 +48,7 @@ export default function Portfolio() {
     {
       title: "Weather Finder",
       description: "Modern weather application delivering real-time forecasts, location-based weather insights, and an intuitive user interface for quick and accurate weather updates.",
-      image: "/public/Weather.png",
+      image: "/weather.png",
       technologies: ["HTML5", "CSS3", "JavaScript", "OpenWeatherMap API"],
       features: ["Real-time weather updates", "Location-based weather insights", "Intuitive user interface"],
       liveUrl: "https://sathish2434.github.io/Weather-finder/",
@@ -57,7 +57,7 @@ export default function Portfolio() {
     {
       title: "Fake News Detector",
       description: "Integrated healthcare management system with patient records, appointment scheduling, and AI-powered diagnostic assistance for healthcare providers.",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      image: "/Fake_news.png",
       technologies: ["React", ".NET Core", "Azure", "HIPAA"],
       features: ["Patient management", "Telemedicine", "Secure messaging"],
       liveUrl: "https://example.com",

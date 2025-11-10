@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, X, Send, Maximize2 } from "lucide-react";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -97,6 +96,7 @@ export function AIWidget() {
           className="h-14 w-14 rounded-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg hover:shadow-xl transition-all duration-300"
           onClick={() => setIsOpen(!isOpen)}
           data-testid="ai-widget-toggle"
+          data-ai-widget
         >
           <motion.div
             initial={false}
@@ -132,17 +132,19 @@ export function AIWidget() {
                   </Badge>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Link href="/ai-assistant">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-6 w-6 p-0"
-                      title="Open Full Assistant"
-                      data-testid="widget-maximize"
-                    >
-                      <Maximize2 className="h-3 w-3" />
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0"
+                    title="Open Full Assistant"
+                    data-testid="widget-maximize"
+                    onClick={() => {
+                      // Scroll to top or show a message that full assistant is available via widget
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                  >
+                    <Maximize2 className="h-3 w-3" />
+                  </Button>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -245,16 +247,17 @@ export function AIWidget() {
                   </Button>
                 </div>
                 <div className="text-center mt-2">
-                  <Link href="/ai-assistant">
-                    <Button
-                      variant="link"
-                      size="sm"
-                      className="text-xs text-primary hover:text-primary/80 h-auto p-0"
-                      data-testid="widget-full-assistant"
-                    >
-                      Open Full Assistant
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="link"
+                    size="sm"
+                    className="text-xs text-primary hover:text-primary/80 h-auto p-0"
+                    data-testid="widget-full-assistant"
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                  >
+                    Open Full Assistant
+                  </Button>
                 </div>
               </div>
             </Card>

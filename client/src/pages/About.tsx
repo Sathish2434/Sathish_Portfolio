@@ -42,7 +42,7 @@ export default function About() {
           >
             <div className="relative">
               <img
-                src="./public/sathish.jpg"
+                src="/Sathish.jpg"
                 alt="Sathish - Professional headshot"
                 className="rounded-2xl shadow-2xl w-full max-w-md mx-auto object-cover"
               />

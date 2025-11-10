@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Bot } from "lucide-react";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
 import AnimatedDotBackground from "@/components/AnimatedDotBackground";
@@ -118,31 +117,45 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           variants={itemVariants}
         >
-          <Link href="/portfolio">
-            <Button
-              size="lg"
-              className={
-                theme === "light"
-                  ? "bg-accent text-primary-foreground hover:bg-accent/90 transition-all duration-300 group"
-                  : "bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 group"
+          <Button
+            size="lg"
+            className={
+              theme === "light"
+                ? "bg-accent text-primary-foreground hover:bg-accent/90 transition-all duration-300 group"
+                : "bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 group"
+            }
+            data-testid="hero-view-work"
+            onClick={() => {
+              const element = document.getElementById("portfolio");
+              if (element) {
+                const offset = 64; // Navbar height
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: "smooth"
+                });
               }
-              data-testid="hero-view-work"
-            >
-              View My Work
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
-          <Link href="/ai-assistant">
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-border hover:bg-muted transition-all duration-300 group"
-              data-testid="hero-try-ai"
-            >
-              Try AI Assistant
-              <Bot className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-            </Button>
-          </Link>
+            }}
+          >
+            View My Work
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="border-border hover:bg-muted transition-all duration-300 group"
+            data-testid="hero-try-ai"
+            onClick={() => {
+              const aiWidget = document.querySelector('[data-ai-widget]');
+              if (aiWidget) {
+                (aiWidget as HTMLElement).click();
+              }
+            }}
+          >
+            Try AI Assistant
+            <Bot className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+          </Button>
         </motion.div>
       </motion.div>
     </section>

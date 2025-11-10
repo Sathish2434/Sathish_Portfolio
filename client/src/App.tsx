@@ -1,4 +1,3 @@
-import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -6,27 +5,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AIWidget } from "@/components/AIWidget";
 import Navbar from "@/components/Navbar";
-import Home from "@/pages/Home";
+import Hero from "@/components/Hero";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Portfolio from "@/pages/Portfolio";
+import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
-import AI from "@/pages/AI";
-import NotFound from "@/pages/not-found";
-
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/services" component={Services} />
-      <Route path="/portfolio" component={Portfolio} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/ai-assistant" component={AI} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+import Footer from "@/components/Footer";
 
 function App() {
   return (
@@ -36,9 +21,37 @@ function App() {
           <div className="min-h-screen bg-background text-foreground">
             <Navbar />
             <main>
-              <Router />
+              {/* Hero Section */}
+              <section id="home" className="scroll-mt-16">
+                <Hero />
+              </section>
+              
+              {/* About Section */}
+              <section id="about" className="scroll-mt-16">
+                <About />
+              </section>
+              
+              {/* Services Section */}
+              <section id="services" className="scroll-mt-16">
+                <Services />
+              </section>
+              
+              {/* Portfolio Section */}
+              <section id="portfolio" className="scroll-mt-16">
+                <Portfolio />
+              </section>
+              
+              {/* Blog Section */}
+              <section id="blog" className="scroll-mt-16">
+                <Blog />
+              </section>
+              
+              {/* Contact Section */}
+              <section id="contact" className="scroll-mt-16">
+                <Contact />
+              </section>
             </main>
-            {/* <Footer /> */}
+            <Footer />
             <AIWidget />
             <Toaster />
           </div>
