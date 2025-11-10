@@ -3,6 +3,7 @@ import { ArrowRight, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
 import AnimatedDotBackground from "@/components/AnimatedDotBackground";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 export default function Hero() {
   const { theme } = useTheme();
@@ -43,14 +44,32 @@ export default function Hero() {
     },
   };
 
+  // Gold and silver color palette for dots
+  const particleColors = ["#fbbf24", "#f59e0b", "#d97706", "#facc15", "#c0c0c0", "#a8a8a8", "#d3d3d3", "#e8e8e8", "#f5f5f5"];
+
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+      {/* Simple Dots Background Effect - Only in Hero */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <SparklesCore
+          id="hero-sparkles"
+          background="transparent"
+          minSize={1}
+          maxSize={2}
+          particleDensity={60}
+          className="w-full h-full"
+          particleColor={particleColors}
+          speed={0.3}
+          enableMouseTrace={false}
+        />
+      </div>
+
       {/* Animated Dot Background */}
       <AnimatedDotBackground />
       
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-secondary/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-secondary/20 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 z-[1]" />
       
       {/* Animated background shapes */}
       <motion.div

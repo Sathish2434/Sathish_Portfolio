@@ -14,8 +14,9 @@ type ParticlesProps = {
   minSize?: number;
   maxSize?: number;
   speed?: number;
-  particleColor?: string;
+  particleColor?: string | string[];
   particleDensity?: number;
+  enableMouseTrace?: boolean;
 };
 
 export const SparklesCore = (props: ParticlesProps) => {
@@ -28,6 +29,7 @@ export const SparklesCore = (props: ParticlesProps) => {
     speed,
     particleColor,
     particleDensity,
+    enableMouseTrace = true,
   } = props;
   const [init, setInit] = useState(false);
 
@@ -124,7 +126,9 @@ export const SparklesCore = (props: ParticlesProps) => {
                 },
               },
               color: {
-                value: particleColor || "#ffffff",
+                value: Array.isArray(particleColor) 
+                  ? particleColor 
+                  : (particleColor || ["#3b82f6", "#8b5cf6", "#a855f7"]),
                 animation: {
                   h: {
                     count: 0,
@@ -400,7 +404,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                   value: "#fff",
                 },
                 consent: false,
-                distance: 100,
+                distance: 150,
                 enable: false,
                 frequency: 1,
                 opacity: 1,
