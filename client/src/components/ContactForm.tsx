@@ -24,7 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { sendEmail } from "@/lib/email";
+import sendEmail from "@/lib/email";
 
 const contactFormSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -56,16 +56,21 @@ export default function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     
+    console.log("🚀 FORM SUBMITTED - Starting email send...");
+    console.log("📝 Form data:", data);
+    
     try {
       await sendEmail({
-        to_name: "Sathish",
-        from_name: `${data.firstName} ${data.lastName}`,
-        from_email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
         company: data.company || "Not specified",
         subject: data.subject,
         message: data.message,
       });
 
+      console.log("✅ Email sent successfully!");
+      
       toast({
         title: "Message sent successfully!",
         description: "I'll get back to you as soon as possible.",
@@ -73,6 +78,10 @@ export default function ContactForm() {
 
       form.reset();
     } catch (error) {
+      console.error("❌ CONTACT FORM ERROR:", error);
+      console.error("❌ Error type:", typeof error);
+      console.error("❌ Error details:", JSON.stringify(error, null, 2));
+      
       toast({
         title: "Failed to send message",
         description: "Please try again or contact me directly via email.",
