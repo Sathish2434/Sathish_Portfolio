@@ -16,6 +16,10 @@ interface ChatResponse {
   stream?: ReadableStream<Uint8Array>;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
+const OPENAI_ENDPOINT = `${API_BASE}/api/openai-proxy`;
+const DUMMY_AI_ENDPOINT = `${API_BASE}/api/dummy-ai`;
+
 export async function sendChat(
   messages: ChatMessage[],
   options: ChatOptions = {}
@@ -27,27 +31,58 @@ export async function sendChat(
   } = options;
 
   try {
-    const response = await fetch("/api/openai-proxy", {
+    const body = JSON.stringify({
+      messages: messages.map(msg => ({
+        role: msg.role,
+        content:
+          msg.content +
+          (msg.role === "user" && responseStyle !== "balanced"
+            ? `\n\n[Response style: ${responseStyle}]`
+            : ""),
+      })),
+      model,
+      stream,
+    });
+
+    let response = await fetch(OPENAI_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        messages: messages.map(msg => ({
-          role: msg.role,
-          content: msg.content + (msg.role === "user" && responseStyle !== "balanced" 
-            ? `\n\n[Response style: ${responseStyle}]` 
-            : "")
-        })),
-        model,
-        stream,
-      }),
+      body,
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      const errorMessage = errorData.message || errorData.error || `HTTP ${response.status}: ${response.statusText}`;
-      console.error("API Error Details:", errorData);
+      // Try fallback to dummy AI on 404/402/500 or missing backend
+      if ([404, 402, 500].includes(response.status)) {
+        const fallback = await fetch(DUMMY_AI_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body,
+        });
+        if (fallback.ok) {
+          // Non-streaming only for fallback
+          const data = await safeParseJson(fallback);
+          return {
+            content: data.content || "No response received",
+          };
+        } else {
+          const errorText = await fallback.text().catch(() => "");
+          const maybeJson = safeTryParse(errorText);
+          const errorMessage =
+            (maybeJson && (maybeJson.message || maybeJson.error)) ||
+            `HTTP ${fallback.status}: ${fallback.statusText}`;
+          throw new Error(errorMessage);
+        }
+      }
+
+      // Otherwise, read error safely without assuming JSON
+      const errorText = await response.text().catch(() => "");
+      const maybeJson = safeTryParse(errorText);
+      const errorMessage =
+        (maybeJson && (maybeJson.message || maybeJson.error)) ||
+        `HTTP ${response.status}: ${response.statusText}`;
+      console.error("API Error Details:", maybeJson || errorText);
       throw new Error(errorMessage);
     }
 
@@ -57,7 +92,7 @@ export async function sendChat(
         stream: response.body
       };
     } else {
-      const data = await response.json();
+      const data = await safeParseJson(response);
       return {
         content: data.content || data.choices?.[0]?.message?.content || "No response received"
       };
@@ -70,6 +105,25 @@ export async function sendChat(
         : "Failed to connect to AI service. Please check your connection and try again."
     );
   }
+}
+
+function safeTryParse(text: string): any | null {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+}
+
+async function safeParseJson(response: Response): Promise<any> {
+  const contentType = response.headers.get("content-type") || "";
+  if (contentType.includes("application/json")) {
+    return response.json();
+  }
+  const text = await response.text().catch(() => "");
+  const maybe = safeTryParse(text);
+  if (maybe) return maybe;
+  return {};
 }
 
 // Progress callback for streaming responses
