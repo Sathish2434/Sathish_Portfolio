@@ -46,7 +46,9 @@ export async function sendChat(
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
+      const errorMessage = errorData.message || errorData.error || `HTTP ${response.status}: ${response.statusText}`;
+      console.error("API Error Details:", errorData);
+      throw new Error(errorMessage);
     }
 
     if (stream && response.body) {

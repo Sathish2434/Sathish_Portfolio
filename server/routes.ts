@@ -8,9 +8,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
-  // Import and use the OpenAI proxy function
+  // Import AI handlers
   const openaiProxy = await import("./functions/openai-proxy");
+  const dummyAI = await import("./functions/dummy-ai");
+
+  // OpenAI proxy endpoint (automatically falls back to dummy AI on errors)
   app.post("/api/openai-proxy", openaiProxy.handler);
+
+  // Direct dummy AI endpoint (for testing or direct use)
+  app.post("/api/dummy-ai", dummyAI.handler);
 
   const httpServer = createServer(app);
 
