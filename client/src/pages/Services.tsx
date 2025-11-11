@@ -1,67 +1,73 @@
 import { motion } from "framer-motion";
-import { Code, Brain, Palette, Cloud, Lightbulb, Wrench, Check } from "lucide-react";
+import { Code, Coffee, Brain, ShoppingCart, Plug, Lightbulb, Check } from "lucide-react";
 import SectionCard from "@/components/SectionCard";
 
 export default function Services() {
   const services = [
     {
       icon: Code,
-      title: "Web Development",
-      description: "Full-stack web applications built with modern frameworks and best practices. From concept to deployment, I deliver scalable and maintainable solutions.",
+      title: "Full-Stack Development",
+      description: "Complete end-to-end web application development from frontend to backend. Building robust, scalable, and maintainable full-stack solutions using modern technologies and best practices.",
       features: [
-        "React.js & Next.js Applications",
-        "RESTful & GraphQL APIs",
-        "Database Design & Optimization"
+        "Frontend: React, Next.js, TypeScript",
+        "Backend: Node.js, Express, REST APIs",
+        "Database: PostgreSQL, MongoDB, MySQL",
+        "Deployment & DevOps Integration"
+      ]
+    },
+    {
+      icon: Coffee,
+      title: "Java Backend Development",
+      description: "Enterprise-grade backend systems built with Java. Creating high-performance, secure, and scalable server-side applications using Spring Boot and modern Java frameworks.",
+      features: [
+        "Spring Boot & Spring Framework",
+        "RESTful & Microservices Architecture",
+        "Database Integration & ORM",
+        "Security & Authentication Systems"
       ]
     },
     {
       icon: Brain,
-      title: "AI Integration",
-      description: "Seamlessly integrate AI capabilities into your applications. From chatbots to advanced analytics, I help you leverage the power of artificial intelligence.",
+      title: "AI-Powered Web Integration",
+      description: "Seamlessly integrate artificial intelligence capabilities into your web applications. From intelligent chatbots to advanced analytics, leverage AI to enhance user experiences and automate processes.",
       features: [
-        "OpenAI & Custom AI Models",
-        "Intelligent Chatbots & Assistants",
-        "Data Analysis & ML Pipelines"
+        "OpenAI & Custom AI Model Integration",
+        "Intelligent Chatbots & Virtual Assistants",
+        "Machine Learning Pipelines",
+        "AI-Powered Analytics & Insights"
       ]
     },
     {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "User-centered design that combines aesthetics with functionality. Creating interfaces that are both beautiful and intuitive to use.",
+      icon: ShoppingCart,
+      title: "E-Commerce Development",
+      description: "Complete e-commerce solutions from product catalogs to payment processing. Building secure, user-friendly online stores with modern shopping experiences and robust transaction handling.",
       features: [
-        "Responsive Design Systems",
-        "User Research & Prototyping",
-        "Accessibility & Performance"
+        "Shopping Cart & Checkout Systems",
+        "Payment Gateway Integration",
+        "Inventory & Order Management",
+        "Customer Account & Dashboard"
       ]
     },
     {
-      icon: Cloud,
-      title: "Cloud & DevOps",
-      description: "Scalable infrastructure and deployment pipelines. From local development to production, ensuring your applications run smoothly and securely.",
+      icon: Plug,
+      title: "API Design & Integration",
+      description: "Design and develop robust APIs that connect your systems seamlessly. Creating well-documented, secure, and efficient APIs for third-party integrations and internal services.",
       features: [
-        "AWS & Docker Deployment",
-        "CI/CD Pipeline Setup",
-        "Monitoring & Security"
+        "RESTful & GraphQL API Design",
+        "Third-Party Service Integration",
+        "API Documentation & Testing",
+        "Authentication & Rate Limiting"
       ]
     },
     {
       icon: Lightbulb,
-      title: "Technical Consulting",
-      description: "Strategic guidance for your technology decisions. Architecture reviews, technology selection, and roadmap planning for your digital initiatives.",
+      title: "Technical Consultation",
+      description: "Strategic technology guidance and expert consultation for your projects. Architecture reviews, technology stack recommendations, and roadmap planning to ensure your digital initiatives succeed.",
       features: [
-        "Architecture & Code Reviews",
+        "System Architecture & Design Reviews",
         "Technology Stack Selection",
-        "Team Training & Mentoring"
-      ]
-    },
-    {
-      icon: Wrench,
-      title: "Maintenance & Support",
-      description: "Ongoing support and maintenance for your applications. Bug fixes, performance optimization, and feature enhancements to keep your systems running smoothly.",
-      features: [
-        "24/7 Monitoring & Support",
-        "Performance Optimization",
-        "Security Updates & Patches"
+        "Code Review & Best Practices",
+        "Team Training & Technical Mentoring"
       ]
     }
   ];
@@ -77,7 +83,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
-            Services
+            What I Do
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Comprehensive solutions for your digital transformation needs

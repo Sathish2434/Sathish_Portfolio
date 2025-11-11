@@ -1,8 +1,20 @@
-import { Link } from "wouter";
 import { Github, Linkedin, Twitter, Dribbble, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 64; // Navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <footer className="bg-card border-t border-border py-12">
@@ -10,11 +22,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href="/">
-              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer">
-                Alex Morgan
-              </div>
-            </Link>
+            <div 
+              className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer"
+              onClick={() => scrollToSection("home")}
+            >
+              SATHISH
+            </div>
             <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
               Full Stack Developer & AI Specialist crafting innovative digital experiences.
             </p>
@@ -22,7 +35,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex space-x-4 mt-6">
               <a
-                href="https://github.com"
+                href="https://github.com/Sathish2434"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
@@ -31,7 +44,7 @@ export default function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/sathish-sundharamoorthy-959946294/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
@@ -40,7 +53,7 @@ export default function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/SATHISH00731"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
@@ -49,7 +62,7 @@ export default function Footer() {
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="https://dribbble.com"
+                href="https://www.instagram.com/god__of_pain/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
@@ -65,39 +78,44 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    Home
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("home")}
+                >
+                  Home
+                </span>
               </li>
               <li>
-                <Link href="/about">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    About
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("about")}
+                >
+                  About
+                </span>
               </li>
               <li>
-                <Link href="/services">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    Services
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("services")}
+                >
+                  Services
+                </span>
               </li>
               <li>
-                <Link href="/portfolio">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    Portfolio
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("portfolio")}
+                >
+                  Portfolio
+                </span>
               </li>
               <li>
-                <Link href="/contact">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    Contact
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  Contact
+                </span>
               </li>
             </ul>
           </div>
@@ -107,39 +125,49 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/services">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    Web Development
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("services")}
+                >
+                  Web Development
+                </span>
               </li>
               <li>
-                <Link href="/services">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    AI Integration
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("services")}
+                >
+                  AI Integration
+                </span>
               </li>
               <li>
-                <Link href="/services">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    UI/UX Design
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("services")}
+                >
+                  UI/UX Design
+                </span>
               </li>
               <li>
-                <Link href="/services">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    Consulting
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => scrollToSection("services")}
+                >
+                  Consulting
+                </span>
               </li>
               <li>
-                <Link href="/ai-assistant">
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
-                    AI Assistant
-                  </span>
-                </Link>
+                <span 
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  onClick={() => {
+                    const aiWidget = document.querySelector('[data-ai-widget]');
+                    if (aiWidget) {
+                      (aiWidget as HTMLElement).click();
+                    }
+                  }}
+                >
+                  AI Assistant
+                </span>
               </li>
             </ul>
           </div>
@@ -151,26 +179,26 @@ export default function Footer() {
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-muted-foreground" />
                 <a
-                  href="mailto:alex@example.com"
+                  href="mailto:sathishsundharamoorthym@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   data-testid="footer-email"
                 >
-                  alex@example.com
+                  sathishsundharamoorthym@gmail.com
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-muted-foreground" />
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+916379387377"
                   className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   data-testid="footer-phone"
                 >
-                  +1 (234) 567-8900
+                  +91 6379387377
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-muted-foreground" />
-                <span className="text-muted-foreground">San Francisco, CA</span>
+                <span className="text-muted-foreground">SH 49, Mahabalipuram, Tamil Nadu 603104</span>
               </li>
             </ul>
           </div>
@@ -179,7 +207,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between">
           <div className="text-sm text-muted-foreground">
-            © {currentYear} Alex Morgan. All rights reserved.
+            © {currentYear} Sathish Sundaramoorthy. All rights reserved.
           </div>
           <div className="flex space-x-6 mt-4 md:mt-0 text-sm">
             <a

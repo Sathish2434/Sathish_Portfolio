@@ -1,86 +1,68 @@
 import emailjs from "@emailjs/browser";
 
-// EmailJS configuration - these should be set as environment variables
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_default";
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_default";
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "public_key_default";
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-// Initialize EmailJS
-emailjs.init(EMAILJS_PUBLIC_KEY);
-
-interface EmailData {
-  to_name: string;
-  from_name: string;
-  from_email: string;
-  company?: string;
+// ✅ This matches YOUR EmailJS template placeholders exactly
+type EmailPayload = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  company: string;
   subject: string;
   message: string;
-}
+};
 
-export async function sendEmail(data: EmailData): Promise<void> {
+// ✅ Export default — because YOU import sendEmail as default
+export default async function sendEmail(data: EmailPayload) {
+  const missingVars: string[] = [];
+  if (!SERVICE_ID) missingVars.push("VITE_EMAILJS_SERVICE_ID");
+  if (!TEMPLATE_ID) missingVars.push("VITE_EMAILJS_TEMPLATE_ID");
+  if (!PUBLIC_KEY) missingVars.push("VITE_EMAILJS_PUBLIC_KEY");
+  
+  if (missingVars.length > 0) {
+    throw new Error(
+      `EmailJS environment variables are missing: ${missingVars.join(", ")}. ` +
+      `Please add them to your .env file. See .env.example for reference.`
+    );
+  }
+
+  // ✅ Send using EXACT keys that match your EmailJS template placeholders
+  const templateParams = {
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    company: data.company,
+    subject: data.subject,
+    message: data.message,
+  };
+
+  // ✅ Step 2 — Add logs BEFORE sending
+  console.log("SERVICE", SERVICE_ID);
+  console.log("TEMPLATE", TEMPLATE_ID);
+  console.log("PUBLIC", PUBLIC_KEY);
+  console.log("TEMPLATE PARAMS", templateParams);
+
   try {
-    const templateParams = {
-      to_name: data.to_name,
-      from_name: data.from_name,
-      from_email: data.from_email,
-      company: data.company || "Not specified",
-      subject: data.subject,
-      message: data.message,
-      reply_to: data.from_email,
-    };
-
     const response = await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams
+      SERVICE_ID,
+      TEMPLATE_ID,
+      templateParams,
+      {
+        publicKey: PUBLIC_KEY,
+      }
     );
 
+    // ✅ EmailJS success status
     if (response.status !== 200) {
-      throw new Error(`EmailJS responded with status: ${response.status}`);
+      throw new Error("Email not sent. Status != 200");
     }
 
-    console.log("Email sent successfully:", response);
-  } catch (error) {
-    console.error("Email sending failed:", error);
-    
-    // Provide more specific error messages
-    if (error instanceof Error) {
-      if (error.message.includes("Invalid user ID")) {
-        throw new Error("Email service configuration error. Please contact support.");
-      } else if (error.message.includes("Template not found")) {
-        throw new Error("Email template not found. Please contact support.");
-      } else if (error.message.includes("Network")) {
-        throw new Error("Network error. Please check your connection and try again.");
-      }
-    }
-    
-    throw new Error("Failed to send email. Please try again or contact me directly.");
+    return response;
+  } catch (error: any) {
+    // ✅ Step 1 — Add this console log inside your sendEmail catch
+    console.error("RAW EMAILJS ERROR:", error);
+    throw new Error(error?.text || error?.message || "Email sending failed");
   }
-}
-
-// Validation helper
-export function validateEmailData(data: Partial<EmailData>): string[] {
-  const errors: string[] = [];
-
-  if (!data.from_name?.trim()) {
-    errors.push("Name is required");
-  }
-
-  if (!data.from_email?.trim()) {
-    errors.push("Email is required");
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.from_email)) {
-    errors.push("Please enter a valid email address");
-  }
-
-  if (!data.subject?.trim()) {
-    errors.push("Subject is required");
-  }
-
-  if (!data.message?.trim()) {
-    errors.push("Message is required");
-  } else if (data.message.length < 10) {
-    errors.push("Message must be at least 10 characters long");
-  }
-
-  return errors;
 }

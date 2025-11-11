@@ -4,39 +4,39 @@
 @tailwind utilities;
 
 :root {
-  /* Classic Dark Mode Colors */
-  --background: hsl(222, 84%, 5%);
-  --foreground: hsl(210, 40%, 96%);
-  --card: hsl(222, 84%, 8%);
-  --card-foreground: hsl(210, 40%, 96%);
-  --popover: hsl(222, 84%, 5%);
-  --popover-foreground: hsl(210, 40%, 96%);
-  --primary: hsl(217, 91%, 60%);
-  --primary-foreground: hsl(222, 84%, 5%);
-  --secondary: hsl(217, 32%, 17%);
-  --secondary-foreground: hsl(210, 40%, 96%);
-  --muted: hsl(217, 32%, 17%);
-  --muted-foreground: hsl(215, 20.2%, 65.1%);
-  --accent: hsl(243, 75%, 59%);
-  --accent-foreground: hsl(210, 40%, 96%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(210, 40%, 96%);
-  --border: hsl(217, 32%, 17%);
-  --input: hsl(217, 32%, 17%);
-  --ring: hsl(224, 71.4%, 4.1%);
-  --chart-1: hsl(217, 91%, 60%);
-  --chart-2: hsl(173, 58%, 39%);
-  --chart-3: hsl(197, 37%, 24%);
-  --chart-4: hsl(43, 74%, 66%);
-  --chart-5: hsl(27, 87%, 67%);
-  --sidebar: hsl(222, 84%, 8%);
-  --sidebar-foreground: hsl(210, 40%, 96%);
-  --sidebar-primary: hsl(217, 91%, 60%);
-  --sidebar-primary-foreground: hsl(222, 84%, 5%);
-  --sidebar-accent: hsl(217, 32%, 17%);
-  --sidebar-accent-foreground: hsl(210, 40%, 96%);
-  --sidebar-border: hsl(217, 32%, 17%);
-  --sidebar-ring: hsl(224, 71.4%, 4.1%);
+  /* Project-wide palette (Dark default) */
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --card: #5e5b5b5f;
+  --card-foreground: #FFFFFF;
+  --popover: #292929;
+  --popover-foreground: #FFFFFF;
+  --primary: #FFFFFF;
+  --primary-foreground: #292929;
+  --secondary: #616161;
+  --secondary-foreground: #FFFFFF;
+  --muted: #616161;
+  --muted-foreground: #FFFFFF;
+  --accent: #616161;
+  --accent-foreground: #FFFFFF;
+  --destructive: #616161;
+  --destructive-foreground: #FFFFFF;
+  --border: #616161;
+  --input: #616161;
+  --ring: #616161;
+  --chart-1: #FFFFFF;
+  --chart-2: #616161;
+  --chart-3: #292929;
+  --chart-4: #FFFFFF;
+  --chart-5: #616161;
+  --sidebar: #292929;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;
+  --sidebar-primary-foreground: #292929;
+  --sidebar-accent: #616161;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #616161;
+  --sidebar-ring: #616161;
   --font-sans: "Inter", sans-serif;
   --font-serif: "Georgia", serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -44,38 +44,39 @@
 }
 
 .light {
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(222, 84%, 5%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(222, 84%, 5%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(222, 84%, 5%);
-  --primary: hsl(217, 91%, 60%);
-  --primary-foreground: hsl(210, 40%, 96%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(222, 84%, 5%);
-  --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
-  --accent: hsl(243, 75%, 59%);
-  --accent-foreground: hsl(210, 40%, 96%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(210, 40%, 96%);
-  --border: hsl(214.3, 31.8%, 91.4%);
-  --input: hsl(214.3, 31.8%, 91.4%);
-  --ring: hsl(222.2, 84%, 4.9%);
-  --chart-1: hsl(217, 91%, 60%);
-  --chart-2: hsl(173, 58%, 39%);
-  --chart-3: hsl(197, 37%, 24%);
-  --chart-4: hsl(43, 74%, 66%);
-  --chart-5: hsl(27, 87%, 67%);
-  --sidebar: hsl(0, 0%, 100%);
-  --sidebar-foreground: hsl(222, 84%, 5%);
-  --sidebar-primary: hsl(217, 91%, 60%);
-  --sidebar-primary-foreground: hsl(210, 40%, 96%);
-  --sidebar-accent: hsl(210, 40%, 96%);
-  --sidebar-accent-foreground: hsl(222, 84%, 5%);
-  --sidebar-border: hsl(214.3, 31.8%, 91.4%);
-  --sidebar-ring: hsl(222.2, 84%, 4.9%);
+  /* Light mode palette opposing dark defaults */
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #f3f4f6; /* light gray card */
+  --card-foreground: #000000; /* pure black text */
+  --popover: #f9fafb; /* very light popover */
+  --popover-foreground: #000000;
+  --primary: #000000; /* invert of dark primary */
+  --primary-foreground: #ffffff;
+  --secondary: #e5e7eb; /* light neutral */
+  --secondary-foreground: #000000;
+  --muted: #e5e7eb;
+  --muted-foreground: #000000;
+  --accent: #000000;
+  --accent-foreground: #000000;
+  --destructive: #ef4444; /* standard red for clarity */
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #000000;
+  --chart-1: #111827; /* dark text color for contrast */
+  --chart-2: #1f2937;
+  --chart-3: #9ca3af;
+  --chart-4: #e5e7eb;
+  --chart-5: #000000;
+  --sidebar: #f3f4f6;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e5e7eb;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #000000;
 }
 
 @layer base {
@@ -130,7 +131,7 @@
 
   /* Chat message styling */
   .chat-message-user {
-    @apply bg-gradient-to-r from-primary to-accent text-white;
+    @apply bg-primary text-[color:var(--primary-foreground)];
   }
 
   .chat-message-assistant {
