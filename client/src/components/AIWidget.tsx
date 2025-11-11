@@ -64,9 +64,21 @@ export function AIWidget() {
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
+      let errorContent = "Sorry, I'm having trouble connecting right now. Please try again later.";
+      
+      if (error instanceof Error) {
+        if (error.message.includes("quota") || error.message.includes("exceeded")) {
+          errorContent = "⚠️ API quota exceeded. Please check your OpenAI billing settings at https://platform.openai.com/account/billing";
+        } else if (error.message.includes("rate limit")) {
+          errorContent = "⏱️ Rate limit reached. Please wait a moment and try again.";
+        } else if (error.message.includes("configuration") || error.message.includes("API key")) {
+          errorContent = "🔧 Server configuration issue. Please contact the administrator.";
+        }
+      }
+      
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "Sorry, I'm having trouble connecting right now. Please try the full AI Assistant page for better support.",
+        content: errorContent,
         role: "assistant",
         timestamp: new Date(),
       };

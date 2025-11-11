@@ -1,6 +1,24 @@
+import { config } from "dotenv";
+import { resolve } from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+// Load .env file from project root (one level up from server directory)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const envPath = resolve(__dirname, "..", ".env");
+config({ path: envPath });
+
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+
+// Log environment variable status on startup (without exposing the key)
+if (process.env.OPENAI_API_KEY) {
+  log(`OpenAI API key loaded: ${process.env.OPENAI_API_KEY.substring(0, 7)}...`);
+} else {
+  log(`⚠️  WARNING: OPENAI_API_KEY not found in environment variables (checked ${envPath})`);
+}
 
 const app = express();
 app.use(express.json());
