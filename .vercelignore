@@ -1,0 +1,15 @@
+node_modules
+dist
+.server
+.env.local
+.env*.local
+*.log
+.DS_Store
+.vscode
+.idea
+server
+shared
+attached_assets
+render.yaml
+replit.md
+
